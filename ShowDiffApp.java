@@ -7,14 +7,31 @@ public class ShowDiffApp {
         ShowDiffApp app = new ShowDiffApp();
         String file1_path = args[0];
         String file2_path = args[1];
-        app.compare(file1_path, file2_path, OUTPUT);
+        app.run(file1_path, file2_path, OUTPUT);
     }
 
     public ShowDiffApp() {
 
     }
 
-    public void compare(String input1, String input2, String output) {
+    //TODO: when same write this
+    public String sameLine(String line) {
+        return line;
+    }
+
+    //TODO: compare, input two lines of String, compare with algos,
+    // call areSame or areDiff based on compare result.
+    public boolean same(String input1, String input2) {
+        boolean same = false;
+        System.out.println(input1 + ", " + input2);
+
+        if (input1.equals(input2)) {
+            same = true;
+        }
+        return same;
+    }
+
+    public void run(String input1, String input2, String output) {
         BufferedReader bufferedReader1 = readfile(input1);
         BufferedReader bufferedReader2 = readfile(input2);
         BufferedWriter bufferedWriter = writeFile(output);
@@ -22,11 +39,12 @@ public class ShowDiffApp {
         String line2, line1 = null;
 
         try {
-            while ((line1 = bufferedReader1.readLine()) != null && (line2 = bufferedReader2.readLine()) != null) {
+            while ((line1 = bufferedReader1.readLine()) != null
+                    && (line2 = bufferedReader2.readLine()) != null) {
                 //System.out.println(line);
-                bufferedWriter.write(line1);
-                bufferedWriter.write(line2);
-
+                if (same(line1, line2)) {
+                    bufferedWriter.write(sameLine(line1));
+                }
             }
 
             bufferedReader1.close();
