@@ -14,16 +14,33 @@ public class ShowDiffApp {
 
     }
 
-    //TODO: when same write this
-    public String sameLine(String line) {
-        return line;
+    //TODO: takes in 2 lines, return them in the format of
+    // ===========
+    // FILE1:
+    // something
+    // -----------
+    // FILE2:
+    // stuff that is different
+    // ===========
+    public String differentLine(String line1, String line2) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("==========\n");
+        sb.append("FILE1:\n");
+        sb.append(line1 + "\n");
+        sb.append("----------\n");
+        sb.append("FILE2:\n");
+        sb.append(line2 + "\n");
+        sb.append("==========\n");
+
+        return sb.toString();
     }
 
-    //TODO: compare, input two lines of String, compare with algos,
-    // call areSame or areDiff based on compare result.
+    public String sameLine(String line) {
+        return line + "\n";
+    }
+
     public boolean same(String input1, String input2) {
         boolean same = false;
-        System.out.println(input1 + ", " + input2);
 
         if (input1.equals(input2)) {
             same = true;
@@ -44,6 +61,8 @@ public class ShowDiffApp {
                 //System.out.println(line);
                 if (same(line1, line2)) {
                     bufferedWriter.write(sameLine(line1));
+                } else {
+                    bufferedWriter.write(differentLine(line1, line2));
                 }
             }
 
