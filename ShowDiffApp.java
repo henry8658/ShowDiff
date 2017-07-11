@@ -54,7 +54,8 @@ public class ShowDiffApp {
     }
 
     private void handleComparison(BufferedWriter bufferedWriter, BufferedReader bufferedReader1, BufferedReader bufferedReader2) throws IOException {
-        String line1 = null, line2 = null;
+        String line1 = null;
+        String line2 = null;
         while ((line1 = bufferedReader1.readLine()) != null
                 && (line2 = bufferedReader2.readLine()) != null) {
             if (same(line1, line2)) {
@@ -63,7 +64,7 @@ public class ShowDiffApp {
                 bufferedWriter.write(differentLine(line1, line2));
             }
         }
-
+        line2 = bufferedReader2.readLine();
         handleLeftOver(line1, line2, bufferedWriter, bufferedReader1, bufferedReader2);
     }
 
